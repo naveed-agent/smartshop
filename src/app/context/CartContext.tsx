@@ -13,7 +13,7 @@ type Product = {
   reviews: number;
   image: string;
   badge?: string;
-  quantity?: number;
+  quantity: number;
 };
 
 type CartContextType = {
