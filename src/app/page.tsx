@@ -709,11 +709,18 @@ export default function Home() {
                     <span className="text-xs text-gray-500 line-through ml-2">{product.originalPrice}</span>
                   </div>
                   <button 
-                    onClick={() => addToCart(product)}
-                    className="text-blue-600 hover:text-blue-800 font-semibold text-sm hover:scale-105 transition transform"
-                  >
-                    [Add to Cart]
-                  </button>
+  onClick={() =>
+    addToCart({
+      ...product,
+      currentPrice: product.price,
+      quantity: 1,
+    })
+  }
+  className="text-blue-600 hover:text-blue-800 font-semibold text-sm hover:scale-105 transition transform"
+>
+  [Add to Cart]
+</button>
+
                 </div>
               </div>
             </div>
