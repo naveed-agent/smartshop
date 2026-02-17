@@ -61,9 +61,15 @@ export default function ProductsPage() {
 
   // Add to cart function using context
   const handleAddToCart = (product: typeof popularProducts[0]) => {
-    addToCart(product);
-    showNotification(`${product.name} added to cart`, product.id);
-  };
+  addToCart({
+    ...product,
+    currentPrice: product.price,
+    quantity: 1,
+  });
+
+  showNotification(`${product.name} added to cart`, product.id);
+};
+
 
   // Show notification
   const showNotification = (message: string, productId?: number) => {
