@@ -69,10 +69,17 @@ export default function ProductDetailPage() {
   }
 
   const handleAddToCart = () => {
-    addToCart(product);
-    // Optional: Show success message
-    alert(`${product.name} added to cart!`);
-  };
+  if (!product) return;
+
+  addToCart({
+    ...product,
+    currentPrice: product.price,
+    quantity: 1,
+  });
+
+  alert(`${product.name} added to cart!`);
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -179,11 +186,18 @@ export default function ProductDetailPage() {
                   
                   <div className="flex space-x-2">
                     <button 
-                      onClick={() => addToCart(related)}
-                      className="flex-1 bg-blue-600 text-white text-sm py-2 rounded hover:bg-blue-700 transition"
-                    >
-                      Add to Cart
-                    </button>
+  onClick={() =>
+    addToCart({
+      ...related,
+      currentPrice: related.price,
+      quantity: 1,
+    })
+  }
+  className="flex-1 bg-blue-600 text-white text-sm py-2 rounded hover:bg-blue-700 transition"
+>
+  Add to Cart
+</button>
+
                     <Link 
                       href={`/products/${related.id}`}
                       className="flex-1 bg-gray-200 text-gray-800 text-sm py-2 rounded hover:bg-gray-300 transition text-center"
